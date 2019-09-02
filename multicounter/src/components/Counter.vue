@@ -21,12 +21,20 @@ export default {
       number: this.index,
     };
   },
+  created() {
+    this.$emit('count',this.index)
+  },
+  destroyed() {
+    this.$emit('count',-this.index)
+  },
   methods: {
     add: function() {
       this.number++;
+      this.$emit('count',1)
     },
     reduce: function() {
       this.number--;
+      this.$emit('count',-1)
     }
   }
 };

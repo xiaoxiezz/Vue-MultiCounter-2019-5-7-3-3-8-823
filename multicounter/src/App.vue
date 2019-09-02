@@ -2,16 +2,21 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <div>
-      <input type="text" v-model="num" />
-      <div v-if="parseInt(num)">
-        <Counter v-for="n in parseInt(num)" v-bind:key="n" v-bind:index="n" />
+      <input type="text" v-model="inputnum" />
+      <div v-if="parseInt(inputnum)">
+        <Counter
+          v-on:count="count"
+          v-for="n in parseInt(inputnum)"
+          v-bind:key="n"
+          v-bind:index="n"
+          v-bind:sum="sum"
+        />
+        <p>sum is :{{sum}}</p>
       </div>
       <div v-else>
         <p>请输入正整数</p>
       </div>
     </div>
-
-    <p>sum is :{{sum}}</p>
   </div>
 </template>
 
@@ -26,8 +31,15 @@ export default {
   data: function() {
     return {
       index: Number,
-      num: 0
+      inputnum: 0,
+      sum: 0
     };
+  },
+  methods: {
+    count: function(e) {
+      this.sum = this.sum + e;
+      // console.log(e);
+    }
   }
 };
 </script>
