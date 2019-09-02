@@ -1,45 +1,27 @@
 <template>
-  <div class="counter">
-    
+  <div class="counter"> 
+    <div>
+    <span>{{index}}:</span>
     <button v-on:click="add">+</button>
     <span>{{number}}</span>
     <button v-on:click="reduce">-</button>
+    </div>
+    
   </div>
 </template>
 
 <script>
 export default {
   name: "Counter",
+  props:{
+    index: Number,
+  },
   data() {
     return {
-      number: 0
+      number: this.index,
     };
   },
   methods: {
-    beforeCreate: function() {
-      window.console.log("beforeCreate");
-    },
-    created: function() {
-      window.console.log("created");
-    },
-    beforeMount: function() {
-       window.console.log("created");
-    },
-    mounted: function() {
-       window.console.log("mounted");
-    },
-    beforeUpdate: function() {
-       window.console.log("beforeUpdate");
-    },
-    updated: function() {
-       window.console.log("updated");
-    },
-    beforeDestroy() {
-       window.console.log("beforeDestory");
-    },
-    destroyed: function() {
-       window.console.log("destoryed");
-    },
     add: function() {
       this.number++;
     },
